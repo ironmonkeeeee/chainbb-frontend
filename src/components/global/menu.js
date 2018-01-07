@@ -86,13 +86,15 @@ class HeaderMenu extends Component {
     )
     if (name) {
       avatar = (
-        <AccountAvatar
-            className="ui avatar image"
-            noLink={true}
-            size={35}
-            style={{margin: 0}}
-            username={name}
-          /> {name}
+        <span>
+          <AccountAvatar
+              className="ui avatar image"
+              noLink={true}
+              size={35}
+              style={{margin: 0}}
+              username={name}
+            /> {name}
+        </span>
       )
       userItem = (
         <Dropdown style={{padding: '0 1.1em'}} item trigger={avatar} pointing='top right' icon={null} className='icon'>
