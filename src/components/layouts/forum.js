@@ -7,7 +7,7 @@ import Sidebar from '../../containers/sidebar'
 
 export default class ForumLayout extends React.Component {
   render() {
-    const { id } = this.props.match.params;
+    const { id, section } = this.props.match.params;
     const pageNo = parseInt(this.props.match.params.pageNo) || 1;
 
     return(
@@ -17,7 +17,7 @@ export default class ForumLayout extends React.Component {
             <Sidebar />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={12} computer={12}>
-            <Forum forumid={id} pageNo={pageNo} />
+            <Forum forumid={id} section={section} pageNo={pageNo} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

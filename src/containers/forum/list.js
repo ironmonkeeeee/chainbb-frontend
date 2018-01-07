@@ -53,7 +53,6 @@ class ForumList extends React.Component {
     async getForumList() {
       try {
         let uri = GLOBAL.REST_API + '/forums';
-        console.log(uri)
         const response = await fetch(uri);
         if (response.ok) {
           const result = await response.json();
@@ -103,6 +102,32 @@ class ForumList extends React.Component {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+          </Segment>
+          <Segment attached='top' secondary>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column computer={7} tablet={9} mobile={8}>
+                <Header size='small'>
+                  Forum
+                </Header>
+              </Grid.Column>
+              <Grid.Column width={2} only='large screen' className='center aligned'>
+                <Header size='small'>
+                  Posts
+                </Header>
+              </Grid.Column>
+              <Grid.Column width={2} only='large screen' className='center aligned'>
+                <Header size='small'>
+                  Replies
+                </Header>
+              </Grid.Column>
+              <Grid.Column width={4} only='large screen'>
+                <Header size='small'>
+                  Latest Reply
+                </Header>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
           </Segment>
           {display}
         </div>

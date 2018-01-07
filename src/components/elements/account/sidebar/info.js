@@ -13,9 +13,6 @@ export default class AccountSidebarInfo extends React.Component {
             shortFormat: true,
             shortFormatMinValue: 1000
           }
-
-    // console.log(account)
-
     return (
       <Table definition size="small">
         <Table.Body>

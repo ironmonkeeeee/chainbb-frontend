@@ -1,8 +1,10 @@
 import steem from 'steem'
 import slug from 'slug'
+import _ from 'lodash'
 
 import * as types from './actionTypes';
 import * as BreadcrumbActions from './breadcrumbActions';
+import * as ForumActions from './forumActions';
 import * as GLOBAL from '../global';
 
 export function setVoteProcessing(id) {
@@ -70,7 +72,7 @@ export function fetchPost(params) {
       if(result.forum) {
         trail.unshift({
           name: result.forum.name,
-          link: `/forum/${result.forum._id}`
+          link: `/f/${result.forum._id}`
         })
       }
       dispatch(BreadcrumbActions.setBreadcrumb(trail));
@@ -80,6 +82,7 @@ export function fetchPost(params) {
           network: result.network
         }
       })
+      dispatch(ForumActions.setForum(result.forum))
       dispatch(fetchPostResolved({
         forum: result.forum,
         content: result.data
@@ -122,6 +125,34 @@ export function fetchPostByAuthor(author, page = 1) {
       console.error(response.status);
       dispatch(fetchPostByAuthorResolved())
     }
+  }
+}
+
+export function fetchPostLive(author, permlink) {
+  return dispatch => {
+    steem.api.getContent(author, permlink, function(err, data) {
+      if(err) {
+
+      } else {
+        dispatch(fetchPostVotesResolved({
+          author,
+          permlink,
+          data: data.active_votes
+        }))
+        dispatch(fetchPostLiveResolved({
+          author,
+          permlink,
+          data
+        }))
+      }
+    })
+  }
+}
+
+export function fetchPostLiveResolved(payload = {}) {
+  return {
+    type: types.POST_LOAD_LIVE_RESOLVED,
+    payload: payload
   }
 }
 
@@ -224,6 +255,29 @@ export function fetchPostResponses(params) {
   }
 }
 
+export function fetchPostVotes(author, permlink) {
+  return dispatch => {
+    steem.api.getActiveVotes(author, permlink, function(err, data) {
+      if(err) {
+
+      } else {
+        dispatch(fetchPostVotesResolved({
+          author,
+          permlink,
+          data
+        }))
+      }
+    })
+  }
+}
+
+export function fetchPostVotesResolved(payload = {}) {
+  return {
+    type: types.POST_LOAD_VOTES_RESOLVED,
+    payload: payload
+  }
+}
+
 export function resetPostState() {
   return {
     type: types.POST_RESET_STATE
@@ -279,23 +333,38 @@ export function submit(account, data, parent, action = 'post') {
     const ops = []
     // Set our post data
     const author = account.name
-    const body = data.body
+    const namespace = (data.existingPost) ? data.existingPost.namespace : data.namespace
     const title = (data.title) ? data.title : ''
+    let body = data.body
     const permlink = (data.existingPost) ? data.existingPost.permlink : generatePermlink(title, parent) // Prevent editing
     const parent_author = (data.existingPost) ? data.existingPost.parent_author : (parent) ? parent.author : ''
     const parent_permlink = (data.existingPost) ? data.existingPost.parent_permlink : (parent) ? parent.permlink : data.category
     // JSON to append to the post
-    const json_metadata = JSON.stringify({
-      app: 'eostalk/0.3',
+    const meta = {
+      app: 'eostalk/0.4',
+      namespace: namespace,
       format: 'markdown+html',
       tags: data.tags
-    })
+    }
+    const json_metadata = JSON.stringify(meta)
     // Predefined beneficiaries for the platform
     // 2% to jesta, 13% for the owners
     const beneficiaries = [
       { "account":"eostalk", "weight": 1300 },
       { "account":"chainbb", "weight": 200 }
     ]
+    // // If the forum is funded, add the creator as a beneficiary
+    // if (data.forum && data.forum.progression) {
+    //     const target = data.forum
+    //     const chainbbPercent = 1500
+    //     const ownerPercent = target.progression.split
+    //     beneficiaries = [
+    //         { "account": "chainbb", "weight": chainbbPercent - ownerPercent}
+    //     ]
+    //     if(ownerPercent > 0) {
+    //         beneficiaries.push({ "account": target.creator, "weight": ownerPercent})
+    //     }
+    // }
     // The percentage overall (after platform splits) that the user receives - should be dynamic in the future
     const authorPercent = 85
     // Add additional beneficiaries as requested by the user
@@ -306,6 +375,12 @@ export function submit(account, data, parent, action = 'post') {
         beneficiaries.push({account, weight})
       }
     })
+    // // Sort the beneficiaries alphabetically
+    // beneficiaries = _.sortBy(beneficiaries, 'account');
+    // // If this is a root post, append the post footer to the post
+    // if(!parent) {
+    //   body += `<div class="chainbb-footer"><hr><em><small><a href="https://chainbb.com/${data.category}/@${author}/${permlink}">Originally posted</a> in the <a href="https://chainbb.com/f/${namespace}">/f/${namespace}</a> forum on <a href="https://chainbb.com">chainBB.com</a> (<a href="https://chainbb.com/chainbb/@jesta/chainbb-frequently-asked-questions-faq">learn more</a>).</small></em></div>`
+    // }
     // Build the comment operation
     ops.push(['comment', { author, body, json_metadata, parent_author, parent_permlink, permlink, title }])
     // If this is not an edit, add the comment options
@@ -329,6 +404,19 @@ export function submit(account, data, parent, action = 'post') {
           break
       }
       ops.push(['comment_options', { allow_curation_rewards, allow_votes, author, extensions, max_accepted_payout, percent_steem_dollars, permlink }]);
+      // If this is a root post, associate it with the namespace, regardless of category used
+      if(!parent) {
+          ops.push(['custom_json', {
+              required_auths: [],
+              required_posting_auths: [author],
+              id: 'eostalk',
+              json: JSON.stringify(['forum_post', {
+                  namespace,
+                  author,
+                  permlink,
+              }])
+          }])
+      }
     }
     // Uncomment below to debug posts without submitting
     // console.log('data')
@@ -345,7 +433,7 @@ export function submit(account, data, parent, action = 'post') {
     //       ts: +new Date()
     //     }
     //   })
-    // }, 60000)
+    // }, 6000)
     steem.broadcast.send({ operations: ops, extensions: [] }, { posting: account.key }, function(err, result) {
       if(err) {
         dispatch({
@@ -369,5 +457,12 @@ export function submit(account, data, parent, action = 'post') {
         })
       }
     });
+  }
+}
+
+export function removePostLive(author, permlink) {
+  return {
+    type: types.POST_REMOVE_LIVE,
+    payload: { author, permlink }
   }
 }

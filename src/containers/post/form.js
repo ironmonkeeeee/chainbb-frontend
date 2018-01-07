@@ -31,8 +31,8 @@ class PostForm extends React.Component {
 
   constructor(props) {
     super(props)
-    const { action, existingPost } = props;
-    let tags = (props.forum && props.forum.tags) ? [props.forum.tags[0]] : [];
+    const { action, filter, forum, existingPost } = props;
+    let tags = (filter) ? [filter] : (forum && forum.tags) ? [forum.tags[0]] : [];
     if (action === 'edit') {
       if (existingPost.json_metadata && existingPost.json_metadata.tags && existingPost.json_metadata.tags.length) {
         tags = existingPost.json_metadata.tags;
@@ -44,8 +44,8 @@ class PostForm extends React.Component {
       activeItem: 'post',
       beneficiaries: {},
       existingPost: (existingPost) ? existingPost : false,
-      category: (existingPost) ? existingPost.parent_permlink : (props.forum && props.forum.tags) ? props.forum.tags[0] : null,
-      recommended: (props.forum && props.forum.tags) ? props.forum.tags : [],
+      category: (existingPost) ? existingPost.parent_permlink : (filter) ? filter : (forum && forum.tags) ? forum.tags[0] : false,
+      recommended: (forum && forum.tags) ? forum.tags : [],
       submitting: false,
       waitingforblock: false,
       preview: {},
@@ -203,7 +203,13 @@ class PostForm extends React.Component {
   submit = (e) => {
     const form = this.form.formsyForm
     const model = form.getModel()
-    const data = {...model, ...this.state}
+    const _id = (this.props.forum) ? this.props.forum._id : false
+    const data = {
+        ...model,
+        ...this.state,
+        forum: this.props.forum,
+        namespace: _id,
+    }
     const { action, account, parent } = this.props
     this.props.actions.submit(account, data, parent, action)
     this.setState({
@@ -312,6 +318,7 @@ class PostForm extends React.Component {
             <PostFormFieldTags
               additionalTag={this.state.additionalTag}
               addTag={this.addTag}
+              filter={this.props.filter}
               forum={this.props.forum}
               handleChange={this.handleChange}
               removeTag={this.removeTag}
@@ -329,6 +336,7 @@ class PostForm extends React.Component {
             <PostFormFieldRewards
               author={account.name}
               draft={draft}
+              forum={this.props.forum}
               handleBeneficiariesUpdate={this.handleBeneficiariesUpdate}
             />
           </Segment>

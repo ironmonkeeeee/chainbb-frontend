@@ -93,11 +93,9 @@ export default class LoginModal extends React.Component {
         size='small'
         className='modal-warning'
       >
-        <Header icon='warning' content='Fair warning: This is beta software' />
+        <Header icon='warning' content='Please use your keys responsibly.' />
         <Modal.Content>
-          <h3>Please use your use your keys responsibly.</h3>
-          <h5>This is beta software and you use it at your own risk. Please ensure you are only using your posting key within the site to ensure your account balance is safe.</h5>
-          {/*<p>For more information and best practices, please <Link to='#' rel='nofollow' target='_blank'>read our post about security and your keys</Link>.</p>*/}
+          <h4>As with all Steem powered applications, please be aware of what website you're on and if you trust the organization running it. Make sure you are only using your posting key and your active/owner keys remain safe (preferrably in a wallet or offline).</h4>
         </Modal.Content>
         <Modal.Actions>
           <Button color='orange' onClick={this.handleClose}>Cancel</Button>

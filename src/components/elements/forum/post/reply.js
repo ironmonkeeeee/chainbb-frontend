@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Button, Divider, Grid, Header, Segment } from 'semantic-ui-react'
+import { Grid, Header, Segment } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
-import { Link } from 'react-router-dom'
-import PostContent from '../../post/content'
+import PostReplyHeader from './reply/header'
+import PostReplyContent from '../../post/reply/content'
 import MarkdownViewer from '../../../../utils/MarkdownViewer';
-import AccountAvatar from '../../account/avatar'
 import AccountLink from '../../account/link'
+import PostQuote from '../../post/quote'
 
 export default class ForumPostReply extends React.Component {
   render() {
@@ -16,7 +16,7 @@ export default class ForumPostReply extends React.Component {
     if(parent.depth > 0) {
       quote = (
         <div>
-          <Segment padded>
+          <Segment padded stacked='piled' style={{marginBottom: '2em'}}>
             <Header size='small'>
               <AccountLink username={parent.author} />
               {' '}
@@ -26,42 +26,25 @@ export default class ForumPostReply extends React.Component {
               {' '}
               ...
             </Header>
-            <MarkdownViewer text={parent.body} jsonMetadata={{}} large highQualityPost={true}  />
+            <PostQuote>
+                <MarkdownViewer text={parent.body} jsonMetadata={{}} large highQualityPost={true}  />
+            </PostQuote>
           </Segment>
-          <Divider hidden></Divider>
-          <Divider hidden></Divider>
         </div>
       )
     }
     return (
       <Grid>
         <Grid.Row verticalAlign='middle'>
-          <Grid.Column tablet={16} computer={16} mobile={16} style={{marginBottom: '2em'}}>
-            <Segment style={{ borderTop: '2px solid #2185D0' }} secondary attached stacked={(this.props.op && this.props.page !== 1)}>
-              <Header size='medium'>
-                <Button
-                  as={Link}
-                  to={reply.url}
-                  floated='right'
-                  icon='external'
-                  content='Thread'
-                  size='small'
-                  basic
-                  color='grey'
-                />
-                <AccountAvatar username={reply.author} />
-                <AccountLink username={reply.author} />
-                <Header.Subheader>
-                  {'↳ '}
-                  replied in
-                  {' '}
-                  <Link to={`/${reply.category}/@${reply.root_post}`}>
-                    {parent.root_title}
-                  </Link>
-                </Header.Subheader>
-              </Header>
-            </Segment>
-            <PostContent
+          <Grid.Column tablet={16} computer={16} mobile={16}>
+            <PostReplyHeader
+              content={reply}
+              hideAuthor={true}
+              quote={quote}
+              op={false}
+              {...this.props}
+            />
+            <PostReplyContent
               content={reply}
               hideAuthor={true}
               quote={quote}

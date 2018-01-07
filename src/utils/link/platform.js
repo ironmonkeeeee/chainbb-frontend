@@ -1,33 +1,90 @@
 import React from 'react'
 
+import { Popup } from 'semantic-ui-react'
+
+const fallback = {
+  id: 'unknown',
+  name: 'unknown',
+  url: false,
+  pages: [],
+  version: '',
+}
+
+const platforms = [
+  {
+    id: 'busy',
+    name: 'busy',
+    url: 'https://busy.org',
+    pages: ['account', 'comment'],
+  },
+  {
+    id: 'chainbb',
+    name: 'chainbb',
+    url: 'https://chainbb.com',
+    pages: ['account', 'comment'],
+  },
+  {
+    id: 'esteem',
+    name: 'esteem',
+    url: 'http://esteem.ws',
+    pages: ['account', 'comment'],
+  },
+  {
+    id: 'steemit',
+    name: 'steemit',
+    url: 'https://steemit.com',
+    pages: ['account', 'comment'],
+  },
+  {
+    id: '⇐stoned⇔pastries⇒',
+    name: '⇐stoned⇔pastries⇒',
+    url: 'https://minnowbooster.net',
+    pages: ['account', 'comment'],
+  },
+  {
+    id: 'eostalk',
+    name: 'eostalk',
+    url: 'https://eostalk.io',
+    pages: ['account', 'comment'],
+  },
+]
+
 export default class PlatformLink extends React.Component {
-    render() {
-      let platform = this.props.platform,
-          link = <span>{platform}</span>
-      if(platform) {
-        let [id, version] = platform.split("/")
-        switch(id) {
-          case "busy":
-            link = <a rel='nofollow' alt={`${id}/${version}`} href='https://busy.org'>busy/{version}</a>
-            break
-          case "chainbb":
-            link = <a rel='nofollow' alt={`${id}/${version}`} href='https://chainbb.com'>chainbb/{version}</a>
-            break
-          case "esteem":
-            link = <a rel='nofollow' alt={`${id}/${version}`} href='http://esteem.ws'>esteem/{version}</a>
-            break
-          case "steemit":
-            link = <a rel='nofollow' alt={`${id}/${version}`} href='https://steemit.com'>steemit/{version}</a>
-            break
-          case "eostalk":
-            link = <a rel='nofollow' alt={`${id}/${version}`} href='https://eostalk.io'>eostalk/{version}</a>
-            break
-          default:
-            break
-        }
-      } else {
-        link = <span>unknown client</span>
-      }
-      return(link);
+  platform = (post) => {
+    if(!post || !post.json_metadata) {
+      return fallback
     }
+    const apptag = post.json_metadata.app
+    if(apptag) {
+      const [ id, version ] = apptag.split('/')
+      const platform = platforms.find(o => o.id === id)
+      if(platform) {
+        platform['version'] = version
+        return platform
+      }
+    }
+    return fallback
+  }
+  canonical = (platform, post) => {
+    if (platform['url'] === false) return false
+    return platform['url'] + post['url']
+  }
+  render() {
+    let { platform, post } = this.props,
+    link = <span>{platform}</span>,
+    url = ''
+    if(post) {
+      platform = this.platform(post)
+      url = this.canonical(platform, post)
+      if(url) {
+        link = <a rel='nofollow' alt={`${platform.name}`} href={`${url}`}>{platform.name}/{platform.version}</a>
+      } else if(post.json_metadata) {
+        const apptag = post.json_metadata.app
+        link = <span>{ (apptag) ? apptag : platform.name }</span>
+      } else {
+        link = <span>Unknown</span>
+      }
+    }
+    return(link);
+  }
 }

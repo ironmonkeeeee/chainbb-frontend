@@ -1,5 +1,9 @@
 .DS_Store
 .idea
 .git
-build
-node_modules
+.aws
+.boto
+
+build/
+node_modules/
+scripts/

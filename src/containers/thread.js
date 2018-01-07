@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from "react-helmet";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { goToTop, goToAnchor } from 'react-scrollable-anchor'
@@ -22,7 +23,7 @@ class Thread extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, props.match.params, { page: 1 })
+    this.state = Object.assign({}, props.params, { page: 1 })
   }
 
   componentWillMount() {
@@ -40,9 +41,23 @@ class Thread extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.permlink !== this.state.permlink) {
-      this.state = Object.assign({}, nextProps.match.params, { page: 1 });
-      this.fetchPost(nextProps.match.params);
+    const { hash } = location;
+    const regexPage = /#comments-page-(\d+)+$/
+    if (!hash && this.state.page && this.state.page > 1) {
+      this.setState({page: 1})
+    }
+    if (hash) {
+      let matchesPage = hash.match(regexPage)
+      if(matchesPage) {
+        let page = parseInt(matchesPage[1], 10)
+        if(page !== this.state.page) {
+          this.changePage(page)
+        }
+      }
+    }
+    if (nextProps.params.permlink !== this.state.permlink) {
+      this.state = Object.assign({}, nextProps.params, { page: 1 });
+      this.fetchPost(nextProps.params);
     }
   }
 
@@ -138,29 +153,32 @@ class Thread extends React.Component {
     let page = (this.state) ? this.state.page : 1,
         perPage = this.props.preferences.threadPostsPerPage,
         responses = (this.props.post) ? this.props.post.responses : 0,
+        content = (this.props.post) ? this.props.post.content : false,
         pages = Math.ceil(responses.length / perPage),
         postForm = false
     let comments_nav = (
-      <Grid id={(page ? `comments-page-${page}` : '')}>
-        <Grid.Row verticalAlign='middle'>
-          <Grid.Column className='mobile hidden' width={4}>
-            <Header textAlign='center' size='huge' style={{padding: '0.9em 0'}}>
-              Comments ({responses.length})
-              <Header.Subheader>
-                Page {page} of {pages}
-              </Header.Subheader>
-            </Header>
-          </Grid.Column>
-          <Grid.Column mobile={16} tablet={12} computer={12}>
-            <Paginator
-              page={page}
-              perPage={perPage}
-              total={responses.length}
-              callback={this.changePage}
-              />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Segment basic>
+        <Grid id={(page ? `comments-page-${page}` : '')}>
+          <Grid.Row verticalAlign='middle'>
+            <Grid.Column className='mobile hidden' width={8}>
+              <Header>
+                Comments ({responses.length})
+                <Header.Subheader>
+                  Page {page} of {pages}
+                </Header.Subheader>
+              </Header>
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
+              <Paginator
+                page={page}
+                perPage={perPage}
+                total={responses.length}
+                callback={this.changePage}
+                />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     )
     let postFormHeader = (
       <PostFormHeader
@@ -178,6 +196,7 @@ class Thread extends React.Component {
             formHeader={postFormHeader}
             disableAutoFocus={true}
             elements={['body']}
+            forum={this.props.post.forum}
             parent={this.props.post.content}
             onCancel={this.handleCancel}
             onComplete={this.handleResponse}
@@ -185,31 +204,43 @@ class Thread extends React.Component {
           </Segment>
       )
     }
+    let image = 'https://steemit-production-imageproxy-upload.s3.amazonaws.com/DQmckc76UaBZSicePvDG9dKwrgyS5GoZRxAnBZ8AzxtVwH8'
+    if(content && content.json_metadata && content.json_metadata.image && content.json_metadata.image.length > 0) {
+        image = content.json_metadata.image[0]
+    }
     return (
       <div>
+        <Helmet>
+            <title>{content.title}</title>
+            <meta name="description" content={`Posted by ${content.author} on ${content.created} UTC.`} />
+            <meta itemprop="name" content={content.title} />
+            <meta itemprop="description" content={`Posted by ${content.author} on ${content.created} UTC.`} />
+            <meta itemprop="image" content={image} />
+            <meta name="twitter:title" content={content.title} />
+            <meta name="twitter:description" content={`Posted by ${content.author} on ${content.created} UTC.`} />
+            <meta name="twitter:image:src" content={image} />
+            <meta property="og:title" content={content.title} />
+            <meta property="og:url" content={`http://chainbb.com/${(content.post && content.post.forum) ? content.post.forum._id : content.category}/@${content.author}/${content.permlink}`} />
+            <meta property="og:description" content={`Posted by ${content.author} on ${content.created} UTC.`} />
+        </Helmet>
         <Post
+          action={this.state.action}
           page={page}
           changePage={this.changePage}
           scrollToPost={this.scrollToPost}
           { ...this.props }/>
-        <Divider></Divider>
         { comments_nav }
-        <Divider horizontal>Page {page}</Divider>
         <Response
           page={page}
           perPage={perPage}
           changePage={this.changePage}
           scrollToPost={this.scrollToPost}
           { ...this.props } />
-        <Divider horizontal id='comments-new'>Page {page}</Divider>
         { comments_nav }
         <Divider />
         <Grid>
           <Grid.Row>
-            <Grid.Column className='mobile hidden' width={4}>
-
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={12} computer={12}>
+            <Grid.Column mobile={16} tablet={16} computer={16}>
               {postForm}
             </Grid.Column>
           </Grid.Row>
