@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
             All Forums
           </Link>
         </Menu>
-        {requestForum}
+        {/*{requestForum}*/}
         {subscribedForums}
         <Divider />
 
