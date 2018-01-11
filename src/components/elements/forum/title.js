@@ -58,7 +58,7 @@ export default class ForumTitle extends React.Component {
                                                 {' • '}
                                                 created by
                                                 {' '}
-                                                <AccountLink username={(forum) ? forum.creator || 'chainbb' : 'unknown'} color='white' />
+                                                <AccountLink username={(forum) ? forum.creator || 'eostalk' : 'unknown'} color='white' />
                                             </small>
                                         </Header.Subheader>
                                     </Header.Content>
