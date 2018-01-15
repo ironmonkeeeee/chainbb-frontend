@@ -36,7 +36,7 @@ export default class HeaderMenu extends Component {
               </h4>
               <p>the <a href='https://eos.io/' target='_new'> EOS </a> Community, beta version, powered by <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
 
-              <p><a target="_blank" href="https://www.copyrighted.com/copyrights/view/dxj2-evba-bvov-rdqv"><img border="0" alt="Copyrighted.com Registered &amp; Protected
+              <p><a target="_blank" href="https://www.copyrighted.com/copyrights/view/dxj2-evba-bvov-rdqv"><img style={{border: "none"}} alt="Copyrighted.com Registered &amp; Protected
 DXJ2-EVBA-BVOV-RDQV" title="Copyrighted.com Registered &amp; Protected
 DXJ2-EVBA-BVOV-RDQV" width="150" height="40" src="https://static.copyrighted.com/images/seal.gif" /></a></p>
 

@@ -15,6 +15,8 @@ import ForumsLayout from '../components/layouts/forums'
 import RepliesLayout from '../components/layouts/replies'
 import ThreadLayout from '../components/layouts/thread'
 import TopicLayout from '../components/layouts/topic'
+import NewsPage from '../components/layouts/newspage'
+
 
 import BreadcrumbMenu from '../components/global/breadcrumb'
 import FooterMenu from '../components/global/footer'
@@ -58,10 +60,12 @@ const App = () => (
         <BreadcrumbMenu />
         <GlobalNotice />
         <Container>
+          <Route exact path="/newspage" component={NewsPage}/>
+
           {/* <Route exact path="/" component={IndexLayout} /> */}
           <Route exact path="/" render={(props) => <Redirect to="/forums"/>}/>
           <Route path="/@:username" component={Account} />
-          <Route path="/create/forum" component={ForumCreateLayout} />
+          {/*<Route path="/create/forum" component={ForumCreateLayout} />*/}
           <Route path="/feed" component={FeedLayout} />
           <Route path="/forums" component={ForumsLayout} />
           <Route path="/forums/:group" component={IndexLayout} />
