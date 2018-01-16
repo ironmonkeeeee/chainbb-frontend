@@ -1,7 +1,6 @@
 import React from 'react';
-
 import { Grid } from 'semantic-ui-react';
-
+import Iframe from 'react-iframe';
 import Section1 from './newspage/Section1';
 
 export default class NewsPage extends React.Component {
@@ -13,11 +12,14 @@ export default class NewsPage extends React.Component {
           <Grid.Column mobile={16} tablet={8} computer={8}>
             <Section1 title="General" feed="eos-general" itemStyle="Style1" max={3} />
           </Grid.Column>
-          <Grid.Column mobile={16} tablet={5} computer={5}>
-            <Section1 title="Announcements" feed="eos-announcements" itemStyle="Style2" max={4} />
+          <Grid.Column mobile={16} tablet={4} computer={4}>
+            <Section1 title="Announcements" feed="eos-announcements" itemStyle="Style2" max={2} />
+            <div className="ui divider"></div>
+            <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
           </Grid.Column>
-          <Grid.Column mobile={16} tablet={3} computer={3}>
-            <div className="ui small vertical rectangle test ad" data-text="Small Rectangle"></div>
+          <Grid.Column mobile={16} tablet={4} computer={4}>
+            {/*<div className="ui small vertical rectangle test ad" data-text="Small Rectangle"></div>*/}
+            <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
           </Grid.Column>
         </Grid.Row>
 

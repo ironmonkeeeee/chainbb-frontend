@@ -24,7 +24,7 @@ export class Item extends React.Component {
         <div className="item">
           <div className="image" style={{maxHeight: "100px", overflow: "hidden"}}><img src={image} /></div>
           <div className="content">
-            <a className="header">{title}</a>
+            <a className="ui small header">{title}</a>
             <div className="meta">
               <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
               <AccountLink username={author} />
@@ -50,7 +50,7 @@ export class Item extends React.Component {
         <div className="item">
           <div className="ui small image"><img src={image} /></div>
           <div className="content">
-            <a className="header">{title}</a>
+            <a className="ui small header">{title}</a>
             <div className="meta">
               <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
               <AccountLink username={author} />
@@ -69,7 +69,7 @@ export class Item extends React.Component {
         <div className="item">
           <div className="ui tiny image"><img src={image} /></div>
           <div className="content">
-            <div className="header">{title}</div>
+            <div className="ui small header">{title}</div>
             {/*<div className="description">*/}
               {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
             {/*</div>*/}
