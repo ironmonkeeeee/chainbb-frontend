@@ -11,88 +11,126 @@ import AccountLink from '../../elements/account/link';
 
 export class Item extends React.Component {
   render() {
-    let { item, itemStyle } = this.props;
+    let { item, showMeta, imageSize, titleSize } = this.props;
     let { title, author, created, children } = item;
-    let image = "https://semantic-ui.com/images/wireframe/image.png";
-    try {
-      image = item.json_metadata.image[0];
-    } catch(e) {
-    }
 
-    if (itemStyle === "Style1") {
-      return (
-        <div className="item">
-          <div className="image" style={{maxHeight: "100px", overflow: "hidden"}}><img src={image} /></div>
-          <div className="content">
-            <a className="ui small header">{title}</a>
-            <div className="meta">
-              <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
-              <AccountLink username={author} />
-              <br/>
-              <TimeAgo date={`${created}Z`} />
-            </div>
-            {/*<div className="description">*/}
-            {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
-            {/*</div>*/}
-            <div className="extra">{children} comments</div>
+    // if (itemStyle === "Style1") {
+    //   return (
+    //     <div className="item">
+    //       <div className="image" style={{maxHeight: "100px", overflow: "hidden"}}><img src={image} /></div>
+    //       <div className="content">
+    //         <a className="ui small header">{title}</a>
+    //         <div className="meta">
+    //           <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
+    //           <AccountLink username={author} />
+    //           <br/>
+    //           <TimeAgo date={`${created}Z`} />
+    //         </div>
+    //         {/*<div className="description">*/}
+    //         {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
+    //         {/*</div>*/}
+    //         <div className="extra">{children} comments</div>
+    //       </div>
+    //     </div>
+    //   )
+    // } elseif (itemStyle === "Style2") {
+    //   return (
+    //     <div className="item">
+    //       <div className="ui tiny image"><img src={image}/></div>
+    //       <div className="middle aligned content">{title}</div>
+    //     </div>
+    //   )
+    // } else if (itemStyle === "Style3") {
+    //   return (
+    //     <div className="item">
+    //       <div className="ui small image"><img src={image} /></div>
+    //       <div className="content">
+    //         <a className="ui small header">{title}</a>
+    //         <div className="meta">
+    //           <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
+    //           <AccountLink username={author} />
+    //           <br/>
+    //           <TimeAgo date={`${created}Z`} />
+    //         </div>
+    //         {/*<div className="description">*/}
+    //           {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
+    //         {/*</div>*/}
+    //         <div className="extra">{children} comments</div>
+    //       </div>
+    //     </div>
+    //   )
+    // } else if (itemStyle === "Style4") {
+    //   return (
+    //     <div className="item">
+    //       <div className="ui tiny image"><img src={image} /></div>
+    //       <div className="content">
+    //         <div className="ui small header">{title}</div>
+    //         {/*<div className="description">*/}
+    //           {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
+    //         {/*</div>*/}
+    //         <div className="meta">
+    //           <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
+    //           <AccountLink username={author} />
+    //           <br/>
+    //           <TimeAgo date={`${created}Z`} />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   )
+    // } else {
+    //   return (
+    //     <div>Invalid itemStyle</div>
+    //   )
+    // }
+
+      let imageSrc = "https://semantic-ui.com/images/wireframe/image.png";
+      try {
+        imageSrc = item.json_metadata.image[0];
+      } catch(e) {
+      }
+      let htmlImage = <div className="ui tiny image"><img src={imageSrc} /></div>;
+      if (imageSize !== '') {
+        htmlImage = <div className={"ui image " + imageSize}><img src={imageSrc} /></div>;
+      }
+
+      let htmlTitle = <div className="ui small header">{title}</div>;
+      if (titleSize == 'small') {
+        htmlTitle = <div className="ui small header"><small>{title}</small></div>;
+      }
+
+
+      let meta = null;
+      if (showMeta) {
+        meta = (
+          <div className="meta">
+            <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
+            <AccountLink username={author} />
+            <br/>
+            <TimeAgo date={`${created}Z`} />
           </div>
-        </div>
-      )
-    } else if (itemStyle === "Style2") {
+        );
+      }
+
       return (
         <div className="item">
-          <div className="ui tiny image"><img src={image}/></div>
-          <div className="middle aligned content">{title}</div>
-        </div>
-      )
-    } else if (itemStyle === "Style3") {
-      return (
-        <div className="item">
-          <div className="ui small image"><img src={image} /></div>
+          {htmlImage}
           <div className="content">
-            <a className="ui small header">{title}</a>
-            <div className="meta">
-              <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
-              <AccountLink username={author} />
-              <br/>
-              <TimeAgo date={`${created}Z`} />
-            </div>
+            {htmlTitle}
             {/*<div className="description">*/}
               {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
             {/*</div>*/}
-            <div className="extra">{children} comments</div>
+            {meta}
           </div>
         </div>
       )
-    } else if (itemStyle === "Style4") {
-      return (
-        <div className="item">
-          <div className="ui tiny image"><img src={image} /></div>
-          <div className="content">
-            <div className="ui small header">{title}</div>
-            {/*<div className="description">*/}
-              {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
-            {/*</div>*/}
-            <div className="meta">
-              <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
-              <AccountLink username={author} />
-              <br/>
-              <TimeAgo date={`${created}Z`} />
-            </div>
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div>Invalid itemStyle</div>
-      )
-    }
   }
 }
 
 Item.propTypes = {
   item: PropTypes.object.isRequired,
-  itemStyle: PropTypes.string.isRequired
+  showMeta: PropTypes.bool.isRequired,
+  imageSize: PropTypes.string.isRequired,
+  titleSize: PropTypes.string.isRequired
 }
 
 
@@ -103,8 +141,16 @@ export default class Section1 extends React.Component {
     title: PropTypes.string.isRequired,
     feed: PropTypes.string.isRequired,
     max: PropTypes.number.isRequired,
-    itemStyle: PropTypes.string.isRequired
-  };
+    showMeta: PropTypes.bool,
+    imageSize: PropTypes.string,
+    titleSize: PropTypes.string
+  }
+
+  static defaultProps = {
+    showMeta: true,
+    imageSize: '',
+    titleSize: ''
+  }
 
   constructor(props) {
     super(props);
@@ -119,7 +165,7 @@ export default class Section1 extends React.Component {
   }
 
   async loadData() {
-    console.log("loadData1");
+    // console.log("loadData1");
 
     this.setState({
       posts: [],
@@ -157,9 +203,9 @@ export default class Section1 extends React.Component {
     return (
       <div>
         <h4 className="ui dividing header">{this.props.title}</h4>
-        <div className="ui divided items">
+        <div className="ui items">
           {this.state.posts.map(item => {
-            return <Item key={item._id} item={item} itemStyle={this.props.itemStyle}  />
+            return <Item {...this.props} key={item._id} item={item} />
           })}
         </div>
         {/*<div className="ui centered banner test ad"></div>*/}
