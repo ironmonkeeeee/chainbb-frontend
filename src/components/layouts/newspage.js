@@ -13,9 +13,8 @@ export default class NewsPage extends React.Component {
             <Section1 title="General" feed="eos-general" itemStyle="Style1" max={3} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={4} computer={4}>
-            <Section1 title="Announcements" feed="eos-announcements" itemStyle="Style2" max={2} />
-            <div className="ui divider"></div>
-            <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
+            <Section1 title="Announcements" feed="eos-announcements" itemStyle="Style2" max={4} />
+            {/*<div className="ui divider"></div>*/}
           </Grid.Column>
           <Grid.Column mobile={16} tablet={4} computer={4}>
             {/*<div className="ui small vertical rectangle test ad" data-text="Small Rectangle"></div>*/}
@@ -31,7 +30,9 @@ export default class NewsPage extends React.Component {
             <Section1 title="Developers" feed="eos-dev" itemStyle="Style3" max={3} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={4} computer={4}>
-            <Section1 title="EOS Meetups" feed="eos-meetups" itemStyle="Style2" max={4} />
+            {/*<Section1 title="EOS Meetups" feed="eos-meetups" itemStyle="Style2" max={4} />*/}
+            <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
+            <Iframe url="https://tgwidget.com/widget/count/?id=5a5df73183ba8879648b4567" position="relative" width="100%" height="50px" />
           </Grid.Column>
         </Grid.Row>
 
