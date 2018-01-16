@@ -88,16 +88,8 @@ export class Item extends React.Component {
         imageSrc = item.json_metadata.image[0];
       } catch(e) {
       }
-      let htmlImage = <div className="ui tiny image"><img src={imageSrc} /></div>;
-      if (imageSize !== '') {
-        htmlImage = <div className={"ui image " + imageSize}><img src={imageSrc} /></div>;
-      }
-
-      let htmlTitle = <div className="ui small header">{title}</div>;
-      if (titleSize == 'small') {
-        htmlTitle = <div className="ui small header"><small>{title}</small></div>;
-      }
-
+      let htmlImage = <div className={"ui image " + imageSize} style={{overflow: 'hidden', maxHeight: '10em'}}><img src={imageSrc} /></div>;
+      let htmlTitle = <div className={titleSize}>{title}</div>;
 
       let meta = null;
       if (showMeta) {
@@ -148,8 +140,8 @@ export default class Section1 extends React.Component {
 
   static defaultProps = {
     showMeta: true,
-    imageSize: '',
-    titleSize: ''
+    imageSize: 'tiny',
+    titleSize: 'ui header tiny'
   }
 
   constructor(props) {
@@ -174,6 +166,11 @@ export default class Section1 extends React.Component {
 
     try {
       let url = `${ GLOBAL.REST_API }/forum/${this.props.feed}?page=1`
+
+      if (this.props.feed.startsWith('/newspage/')) {
+        url = `${ GLOBAL.REST_API }${this.props.feed}`
+      }
+
       const response = await fetch(url)
       if (response.ok) {
         const result = await response.json()

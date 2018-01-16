@@ -10,7 +10,7 @@ export default class NewsPage extends React.Component {
       <Grid>
         <Grid.Row>
           <Grid.Column mobile={16} tablet={8} computer={8}>
-            <Section1 title="General" feed="eos-general" max={3} />
+            <Section1 title="General" feed="eos-general" imageSize="small" titleSize="ui header tiny" max={3} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={4} computer={4}>
             <Section1 title="Announcements" feed="eos-announcements" imageSize="mini" titleSize="small" showMeta={false} max={7} />
@@ -24,13 +24,12 @@ export default class NewsPage extends React.Component {
 
         <Grid.Row>
           <Grid.Column mobile={16} tablet={6} computer={6}>
-            <Section1 title="Community Projects" feed="eos-projects" max={3} />
+            <Section1 title="Most Votes" feed="/newspage/voted" titleSize="tiny" max={5} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={6} computer={6}>
-            <Section1 title="Developers" feed="eos-dev" max={3} />
+            <Section1 title="Recent" feed="/newspage/recent" titleSize="tiny" max={5} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={4} computer={4}>
-            {/*<Section1 title="EOS Meetups" feed="eos-meetups" itemStyle="Style2" max={4} />*/}
             <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
             <Iframe url="https://tgwidget.com/widget/count/?id=5a5df73183ba8879648b4567" position="relative" width="100%" height="50px" />
           </Grid.Column>
@@ -38,10 +37,10 @@ export default class NewsPage extends React.Component {
 
         <Grid.Row>
           <Grid.Column mobile={16} tablet={8} computer={8}>
-            <Section1 title="Support" feed="eos-help" max={3} />
+            <Section1 title="Support" feed="eos-help" titleSize="ui header tiny" max={3} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={8}>
-            <Section1 title="EOS governance" feed="eos-gov" max={3} />
+            <Section1 title="EOS governance" feed="eos-gov" titleSize="ui header tiny" max={3} />
           </Grid.Column>
         </Grid.Row>
 
