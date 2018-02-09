@@ -42,7 +42,7 @@ export default class ForumTitle extends React.Component {
         }
         return (
             <div>
-                <Segment attached='top' color='blue' inverted stacked>
+                <Segment attached='top' color='grey' inverted stacked>
                     <Grid stackable>
                         <Grid.Row>
                             <Grid.Column width={14}>
