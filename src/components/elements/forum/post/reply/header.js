@@ -13,7 +13,7 @@ export default class PostReplyHeader extends React.Component {
     const { topic } = this.props
     const { parent, reply } = topic
     return (
-        <Segment style={{ borderTop: '2px solid #2185D0' }} secondary attached stacked={(this.props.op && this.props.page !== 1)}>
+        <Segment style={{ borderTop: '2px solid #2185D0' }} attached stacked={(this.props.op && this.props.page !== 1)}>
           <Grid>
             <Grid.Row verticalAlign='top'>
               <Grid.Column tablet={13} computer={13} mobile={13}>

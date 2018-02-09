@@ -64,7 +64,7 @@ export default class ForumIndex extends React.Component {
             verticalAlign='middle'
             >
             <Grid.Column computer={7} tablet={9} mobile={8}>
-              <Header size='medium'>
+              <Header size='tiny'>
                 <Icon color='blue' name={highlight ? 'pin' : 'list'} />
                 <Header.Content>
                   <ForumLink forum={forum}/>
@@ -91,12 +91,12 @@ export default class ForumIndex extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column width={2} className='tablet or lower hidden' textAlign='center'>
-              <Header size='medium'>
+              <Header size='tiny' color='grey'>
                 <NumericLabel params={numberFormat}>{(forum.stats) ? forum.stats.posts : '?'}</NumericLabel>
               </Header>
             </Grid.Column>
             <Grid.Column width={2} className='tablet or lower hidden' textAlign='center'>
-              <Header size='medium'>
+              <Header size='tiny' color='grey'>
                 <NumericLabel params={numberFormat}>{(forum.stats) ? forum.stats.replies : '?'}</NumericLabel>
               </Header>
             </Grid.Column>

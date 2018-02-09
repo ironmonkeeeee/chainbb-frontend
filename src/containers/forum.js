@@ -260,7 +260,7 @@ class Forum extends React.Component {
               key: 'subforums',
               title: (
                   <Header
-                      size='small'
+                      size='tiny'
                       key='subforums-title'
                       as={Accordion.Title}
                       content={`Subforums (${children.length})`}
@@ -283,7 +283,7 @@ class Forum extends React.Component {
             }
         ]
         subforums = (
-            <Segment secondary attached='bottom'>
+            <Segment attached='bottom'>
                 <Accordion panels={panels} />
             </Segment>
         )

@@ -154,7 +154,7 @@ export default class PostContent extends React.Component {
     }
     if(responding) {
       postForm = (
-        <Segment secondary color='green'>
+        <Segment color='green'>
           <PostForm
             action='create'
             actions={this.props.actions}

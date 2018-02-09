@@ -16,7 +16,7 @@ export default class ForumOverview extends React.Component {
         )) : []
         return(
             <div>
-                <Segment padded attached='top' secondary color='black'>
+                <Segment padded attached='top' color='black'>
                     <Header size='large'>
                         Forum Overview
                         <Header.Subheader>

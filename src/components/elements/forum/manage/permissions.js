@@ -10,7 +10,7 @@ export default class ForumPermissions extends React.Component {
         const { target } = forum
         return(
             <div>
-                <Segment padded attached='top' secondary color='purple'>
+                <Segment padded attached='top' color='purple'>
                     <Header size='large'>
                         Forum Permissions
                         <Header.Subheader>

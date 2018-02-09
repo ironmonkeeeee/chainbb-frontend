@@ -207,7 +207,7 @@ export default class PostReplyContent extends React.Component {
         </span>)
       }
       title = (
-        <Segment style={{ borderTop: '2px solid #2185D0' }} secondary attached stacked={(this.props.op && this.props.page !== 1)}>
+        <Segment style={{ borderTop: '2px solid #2185D0' }} attached stacked={(this.props.op && this.props.page !== 1)}>
           <Header size='huge'>
             <h1 style={{margin: 0}}>
               {post.title}
@@ -231,7 +231,7 @@ export default class PostReplyContent extends React.Component {
       )
       if (!this.props.preview) {
         postFooter = (
-          <Segment basic clearing secondary attached='bottom'>
+          <Segment basic clearing attached='bottom'>
             <PostControls
               target={post}
               onlyButton={true}

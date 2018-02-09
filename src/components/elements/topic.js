@@ -87,12 +87,12 @@ export default class Forum extends React.Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={8}>
-                  <Header size='small'>
+                  <Header size='tiny'>
                     Forum
                   </Header>
                 </Grid.Column>
                 <Grid.Column width={8} className="right aligned">
-                  <Header size='small'>
+                  <Header size='tiny'>
                     Latest Reply
                   </Header>
                 </Grid.Column>

@@ -14,10 +14,10 @@ export default class PostTitle extends React.Component {
     let rootTitle = false
     if(this.props.op) {
       rootTitle = (
-        <Segment inverted color='blue' attached stacked={(this.props.page !== 1)} verticalAlign='top'>
-          <Header size='large'>
+        <Segment inverted attached stacked={(this.props.page !== 1)} verticalAlign='top'>
+          <Header size='tiny'>
             <Icon name='comments' />
-            <Header.Content as='h1'>
+            <Header.Content as='h4'>
               <Link to={`/${(content.namespace) ? content.namespace : content.category}/@${content._id}`} style={{color: '#ececec'}}>
                 {content.title}
               </Link>
@@ -29,11 +29,11 @@ export default class PostTitle extends React.Component {
     return (
       <div>
         {rootTitle}
-        <Segment secondary attached>
+        <Segment attached>
           <Grid>
             <Grid.Row verticalAlign='top'>
               <Grid.Column tablet={8} computer={8} mobile={12}>
-                <Header size='medium'>
+                <Header size='tiny'>
                   <AccountAvatar username={content.author} />
                   <AccountLink username={content.author} />
                   <Header.Subheader>

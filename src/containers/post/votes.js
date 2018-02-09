@@ -270,7 +270,7 @@ class PostVotes extends React.Component {
         onClose={this.handleOnClose}
         size='large'
         trigger={
-          <Label color='blue' size='small' basic as='a' style={{marginLeft: '0.5em'}}>
+          <Label size='small' basic as='a' style={{marginLeft: '0.5em'}}>
             <Icon name='thumbs up' color='blue' />{count}&nbsp;
           </Label>
         }
