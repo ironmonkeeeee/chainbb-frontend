@@ -137,6 +137,9 @@ class Sidebar extends React.Component {
 
         <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
 
+        <h4>EOSTalk Meetup Resources</h4>
+        <Iframe url="https://drive.google.com/embeddedfolderview?id=138Ewe6JQ1NAHhOiGGTFg5LPWkB9SU5h9#list" position="relative" width="100%" height="425px" />
+
       </div>
     )
   }
