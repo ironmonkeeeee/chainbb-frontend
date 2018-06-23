@@ -133,19 +133,15 @@ class Sidebar extends React.Component {
         {subscribedForums}
         <Divider />
 
-        <div>
-          <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
-        </div>
+        <div><Iframe url="/widget_price.html" position="relative" width="100%" height="220px" /></div><br />
 
-        <br />
+        <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" /><br />
 
-        <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
-
-        <br />
+        {/*<div><Iframe url="/widget_dradio.html" position="relative" width="100%" height="545px" /></div><br />*/}
 
         <div style={{backgroundColor: 'lightgrey'}}>
           <h4 style={{padding: '10px'}}>EOSTalk Meetup Resources</h4>
-          <Iframe url="https://drive.google.com/embeddedfolderview?id=138Ewe6JQ1NAHhOiGGTFg5LPWkB9SU5h9#list" position="relative" width="100%" height="425px" />
+          <Iframe url="https://drive.google.com/embeddedfolderview?id=138Ewe6JQ1NAHhOiGGTFg5LPWkB9SU5h9#list" position="relative" width="100%" height="320px" />
         </div>
 
       </div>
