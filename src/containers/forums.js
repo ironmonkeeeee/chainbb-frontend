@@ -142,24 +142,16 @@ class Forums extends React.Component {
                   />
                 </Grid.Column>
                 <Grid.Column computer={6} tablet={8} mobile={8}>
-                  <Header>
-                    {group}
-                  </Header>
+                  <Header>{group}</Header>
                 </Grid.Column>
                 <Grid.Column width={2} className='tablet or lower hidden' textAlign='center'>
-                  <Header size='tiny' style={{display: isMinimized ? "none" : ""}}>
-                    Posts
-                  </Header>
+                  <Header size='tiny' style={{display: isMinimized ? "none" : ""}}>Posts</Header>
                 </Grid.Column>
                 <Grid.Column width={2} className='tablet or lower hidden'>
-                  <Header size='tiny' textAlign='center' style={{display: isMinimized ? "none" : ""}}>
-                    Replies
-                  </Header>
+                  <Header size='tiny' textAlign='center' style={{display: isMinimized ? "none" : ""}}>Replies</Header>
                 </Grid.Column>
                 <Grid.Column computer={5} tablet={6} mobile={6} style={{display: isMinimized ? "none" : ""}}>
-                  <Header size='tiny'>
-                    Recently Active
-                  </Header>
+                  <Header size='tiny'>Recently Active</Header>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

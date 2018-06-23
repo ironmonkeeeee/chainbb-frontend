@@ -107,24 +107,16 @@ class ForumList extends React.Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column computer={7} tablet={9} mobile={8}>
-                  <Header size='tiny' color='grey'>
-                    Forum
-                  </Header>
+                  <Header size='tiny' color='grey'>Forum</Header>
                 </Grid.Column>
                 <Grid.Column width={2} only='large screen' className='center aligned'>
-                  <Header size='tiny' color='grey'>
-                    Posts
-                  </Header>
+                  <Header size='tiny' color='grey'>Posts</Header>
                 </Grid.Column>
                 <Grid.Column width={2} only='large screen' className='center aligned'>
-                  <Header size='tiny' color='grey'>
-                    Replies
-                  </Header>
+                  <Header size='tiny' color='grey'>Replies</Header>
                 </Grid.Column>
                 <Grid.Column width={4} only='large screen'>
-                  <Header size='tiny' color='grey'>
-                    Latest Reply
-                  </Header>
+                  <Header size='tiny' color='grey'>Latest Reply</Header>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
