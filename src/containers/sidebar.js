@@ -133,7 +133,7 @@ class Sidebar extends React.Component {
         {subscribedForums}
         <Divider />
 
-        <div style={{backgroundColor: 'blanchedalmond'}}>
+        <div>
           <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
         </div>
 
@@ -143,7 +143,7 @@ class Sidebar extends React.Component {
 
         <br />
 
-        <div style={{backgroundColor: 'blanchedalmond'}}>
+        <div style={{backgroundColor: 'lightgrey'}}>
           <h4 style={{padding: '10px'}}>EOSTalk Meetup Resources</h4>
           <Iframe url="https://drive.google.com/embeddedfolderview?id=138Ewe6JQ1NAHhOiGGTFg5LPWkB9SU5h9#list" position="relative" width="100%" height="425px" />
         </div>
