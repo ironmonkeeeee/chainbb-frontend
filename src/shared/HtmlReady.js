@@ -160,22 +160,22 @@ function header(tag, state, child) {
     let className = ''
     switch(tag[1]) {
       case '1':
-        className = 'huge'
+        className = ''
         break;
       case '2':
-        className = 'large'
+        className = ''
         break;
       case '3':
         className = ''
         break;
       case '4':
-        className = 'medium'
+        className = ''
         break;
       case '5':
-        className = 'small'
+        className = ''
         break;
       case '6':
-        className = 'tiny'
+        className = ''
         break;
       default:
         className = ''

@@ -20,7 +20,7 @@ const Login = (props) => {
   let account = props.account
   let display = (
     <div>
-      <Segment secondary attached='top'>
+      <Segment attached='top'>
         <h4>Greetings Steemian!</h4>
       </Segment>
       <Segment attached>
@@ -36,7 +36,7 @@ const Login = (props) => {
   if(account.isUser) {
     display = (
       <div>
-        <Segment secondary attached='top'>
+        <Segment attached='top'>
           <h3>
             Welcome
             {' '}

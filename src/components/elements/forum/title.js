@@ -42,24 +42,24 @@ export default class ForumTitle extends React.Component {
         }
         return (
             <div>
-                <Segment attached='top' color='grey' inverted stacked>
+                <Segment attached='top' color='grey' stacked>
                     <Grid stackable>
                         <Grid.Row>
                             <Grid.Column width={14}>
-                                <Header size='huge' key={(forum) ? forum._id : 'unknown'} style={{color: 'white'}}>
+                                <Header size='tiny' key={(forum) ? forum._id : 'unknown'} color='grey'>
                                     <Icon name='list' />
                                     <Header.Content>
                                         {(forum) ? forum.name : 'unknown'}
-                                        <Header.Subheader style={{color: 'white'}}>
-                                            <small>
-                                                <Link to={`/f/${(forum) ? forum._id : 'unknown'}`} style={{color: 'white'}}>
+                                        <Header.Subheader color='grey'>
+                                            <tiny>
+                                                <Link to={`/f/${(forum) ? forum._id : 'unknown'}`} color='grey'>
                                                     /f/{(forum) ? forum._id : 'unknown'}
                                                 </Link>
                                                 {' • '}
                                                 created by
                                                 {' '}
-                                                <AccountLink username={(forum) ? forum.creator || 'eostalk' : 'unknown'} color='white' />
-                                            </small>
+                                                <AccountLink username={(forum) ? forum.creator || 'eostalk' : 'unknown'} />
+                                            </tiny>
                                         </Header.Subheader>
                                     </Header.Content>
                                 </Header>
@@ -91,9 +91,9 @@ export default class ForumTitle extends React.Component {
                     )
                     : false
                 }
-                <Menu attached={(this.props.subforums) ? true : 'bottom'} color='blue' size='tiny'>
+                <Menu attached={(this.props.subforums) ? true : 'bottom'} size='tiny'>
                     <Menu.Item icon value={false} key={(forum) ? forum._id : 'unknown'} onClick={this.changeFilter} active={(this.props.active === false)}>
-                        <Icon name='home' size='large' color='blue' />
+                        <Icon name='home' size='large' />
                     </Menu.Item>
                     {parent}
                     {tags}

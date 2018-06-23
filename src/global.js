@@ -2,7 +2,7 @@ module.exports = {
   // REST_API: 'http://localhost:5000',
   // REST_API: 'https://data.chainbb.com',
   // REST_API: 'https://update.eostalk.io/rest',
-  REST_API: 'https://eostalk.io/rest',
+  REST_API: 'https://update.eostalk.io/rest',
     STM_Config: {
         img_proxy_prefix: "https://steemitimages.com/",
         ipfs_prefix: false,

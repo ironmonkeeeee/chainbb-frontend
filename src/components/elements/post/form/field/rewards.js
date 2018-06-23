@@ -71,7 +71,7 @@ export default class PostFormFieldRewards extends React.Component {
       const weight = Math.floor((beneficiaries[account]/100*authorPercent)*100)/100
       weightDisplay = (
         <Table.Cell>
-          <Header size='small'>
+          <Header size='tiny'>
             {beneficiaries[account]}%
             {' '}
             <small>({weight}%*)</small>
@@ -176,7 +176,7 @@ export default class PostFormFieldRewards extends React.Component {
             </Header>
           </Grid.Column>
           <Grid.Column width={8}>
-            <Segment secondary>
+            <Segment>
               <Modal size='small' open={this.state.addingBeneficiary}>
                 <Modal.Header>Add a Beneficiary</Modal.Header>
                 <Modal.Content>

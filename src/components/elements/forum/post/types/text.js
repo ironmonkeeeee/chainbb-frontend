@@ -93,7 +93,7 @@ export default class ForumPostText extends React.Component {
               {control}
             </Grid.Column>
             <Grid.Column mobile={10} tablet={10} computer={9} largeScreen={9}>
-              <Header size='small'>
+              <Header size='tiny'>
                 <Header.Content>
                   <Link to={`/${(forum) ? forum._id : topic.category}/@${topic._id}`}>
                     {topic.title}
@@ -111,7 +111,7 @@ export default class ForumPostText extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column width={2} className="center aligned tablet or lower hidden">
-              <Header size='small'>
+              <Header size='tiny'>
                 {topic.children}
               </Header>
             </Grid.Column>

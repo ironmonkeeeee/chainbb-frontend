@@ -125,18 +125,18 @@ class Feed extends React.Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Segment attached='top' secondary>
+          <Segment attached='top'>
             <Grid>
               <Grid.Row>
                 <Grid.Column width={1}></Grid.Column>
                 <Grid.Column width={1}></Grid.Column>
                 <Grid.Column width={10}>
-                  <Header size='small'>
+                  <Header size='tiny'>
                     Post
                   </Header>
                 </Grid.Column>
                 <Grid.Column width={4} only='large screen' textAlign='center'>
-                  <Header size='small'>
+                  <Header size='tiny'>
                     Activity
                   </Header>
                 </Grid.Column>

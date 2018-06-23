@@ -15,7 +15,7 @@ export default class ForumUpgrade extends React.Component {
         const percent = Math.round(target.progression.progress / target.progression.required * 10000) / 100
         return(
             <div>
-                <Segment padded attached='top' secondary color='blue'>
+                <Segment padded attached='top' color='blue'>
                     <Header size='large'>
                         Forum Upgrades
                         <Header.Subheader>
@@ -69,7 +69,7 @@ export default class ForumUpgrade extends React.Component {
                         content='The upgrades system is still in development and may undergo changes.'
                     />
                 </Segment>
-                <Segment padded secondary attached>
+                <Segment padded attached>
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={10}>

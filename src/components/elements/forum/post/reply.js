@@ -17,7 +17,7 @@ export default class ForumPostReply extends React.Component {
       quote = (
         <div>
           <Segment padded stacked='piled' style={{marginBottom: '2em'}}>
-            <Header size='small'>
+            <Header size='tiny'>
               <AccountLink username={parent.author} />
               {' '}
               posted

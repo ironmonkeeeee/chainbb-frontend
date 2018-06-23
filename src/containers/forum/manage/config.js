@@ -255,7 +255,7 @@ class ForumConfigForm extends React.Component {
                     loading={this.state.loading}
                     onValidSubmit={this.handleSubmit}
                     >
-                    <Segment padded attached='top' secondary color='orange'>
+                    <Segment padded attached='top' color='orange'>
                         <Header size='large'>
                             Forum Configuration
                             <Header.Subheader>

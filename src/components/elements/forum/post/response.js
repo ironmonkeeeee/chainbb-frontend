@@ -12,7 +12,7 @@ export default class ForumPostResponse extends React.Component {
         <Grid>
           <Grid.Row verticalAlign='middle'>
             <Grid.Column tablet={10} computer={10} mobile={8}>
-              <Header size='small'>
+              <Header size='tiny'>
                 <Link to={`${topic.url}`}>
                   {topic.root_title}
                 </Link>
@@ -27,7 +27,7 @@ export default class ForumPostResponse extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column width={2} only='large screen' className="center aligned">
-              <Header size='small'>
+              <Header size='tiny'>
                 {topic.children}
               </Header>
             </Grid.Column>

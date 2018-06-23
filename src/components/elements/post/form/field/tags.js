@@ -82,7 +82,7 @@ export default class PostFormFieldTags extends React.Component {
             </Table>
           </Grid.Column>
           <Grid.Column width={8}>
-            <Segment secondary>
+            <Segment>
               <Header>
                 Additional Tags
                 <Header.Subheader>

@@ -161,7 +161,7 @@ class Thread extends React.Component {
         <Grid id={(page ? `comments-page-${page}` : '')}>
           <Grid.Row verticalAlign='middle'>
             <Grid.Column className='mobile hidden' width={8}>
-              <Header>
+              <Header size='tiny'>
                 Comments ({responses.length})
                 <Header.Subheader>
                   Page {page} of {pages}
@@ -188,7 +188,7 @@ class Thread extends React.Component {
     )
     if(this.props.post && this.props.post.content && this.props.account && this.props.account.isUser) {
       postForm = (
-        <Segment secondary>
+        <Segment>
           <PostForm
             key={this.state.submitted}
             action='threadReply'
