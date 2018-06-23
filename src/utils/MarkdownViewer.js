@@ -150,7 +150,7 @@ class MarkdownViewer extends Component {
         }
 
         const cn = 'Markdown' + (this.props.className ? ` ${this.props.className}` : '') + (html ? ' html' : '') + (large ? '' : ' MarkdownViewer--small')
-        return (<div className={"MarkdownViewer " + cn}>
+        return (<div className={"MarkdownViewer " + cn} style={{color: 'lightgrey'}}>
             {sections}
             {noImageActive && allowNoImage &&
                 <div onClick={this.onAllowNoImage} className="MarkdownViewer__negative_group">

@@ -33,7 +33,7 @@ export default class ForumReservation extends React.Component {
                             </Header.Content>
                         </Header>
                     </Segment>
-                    <Segment padded attached='bottom' secondary>
+                    <Segment padded attached='bottom'>
                         <Grid>
                             <Grid.Row>
                                 <Grid.Column width={10}>
@@ -117,7 +117,7 @@ export default class ForumReservation extends React.Component {
                                     This page will update automatically once the transaction is confirmed.
                                 </Message.Content>
                             </Message>
-                            <Header size='small'>
+                            <Header size='tiny'>
                                 Please be aware that...
                             </Header>
                             <List as='ul'>

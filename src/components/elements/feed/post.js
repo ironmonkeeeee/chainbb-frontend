@@ -55,7 +55,7 @@ export default class FeedPost extends React.Component {
               />
             </Grid.Column>
             <Grid.Column mobile={10} tablet={10} computer={10} largeScreen={10}>
-              <Header size='small'>
+              <Header size='tiny'>
                 <Header.Content>
                   <Link to={`${topic.url}`}>
                     {topic.title}
@@ -71,7 +71,7 @@ export default class FeedPost extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column width={4} className="center aligned tablet or lower hidden">
-              <Header size='small'>
+              <Header size='tiny'>
                 <Label size='small' color='grey' basic style={{marginLeft: '0.5em'}}>
                   <Icon color='grey' name='comments' />{topic.children}&nbsp;
                 </Label>

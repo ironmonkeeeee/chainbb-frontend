@@ -133,7 +133,7 @@ class Forums extends React.Component {
             return <ForumIndex key={index} forum={forum} isMinimized={isMinimized} />
           })
           return  <div key={group} style={{marginBottom: "10px"}}>
-                    <Segment secondary attached>
+                    <Segment attached>
                       <Grid>
                         <Grid.Row verticalAlign="middle">
                           <Grid.Column computer={1} tablet={2} mobile={2}>
