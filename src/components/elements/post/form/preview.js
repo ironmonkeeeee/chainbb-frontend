@@ -1,9 +1,7 @@
 import React from 'react';
-
-import { Button, Container, Grid, Modal } from 'semantic-ui-react'
-
+import {Button, Container, Grid, Modal} from 'semantic-ui-react'
 import PostContent from '../content'
-import PostSidebar from '../sidebar'
+// import PostSidebar from '../sidebar'
 
 export default class PostPreview extends React.Component {
 
@@ -30,13 +28,13 @@ export default class PostPreview extends React.Component {
 
   render() {
     let display = null
-    if(this.state.post.content) {
+    if (this.state.post.content) {
       display = (
         <Grid.Column mobile={16} tablet={12} computer={12}>
           <PostContent
             preview={true}
             content={this.state.post.content}
-            { ...this.state } />
+            {...this.state} />
         </Grid.Column>
       )
     }

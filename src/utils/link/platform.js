@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Popup } from 'semantic-ui-react'
+// import { Popup } from 'semantic-ui-react'
 
 const fallback = {
   id: 'unknown',

@@ -1,12 +1,9 @@
 import React from 'react';
-
-import { Card } from 'semantic-ui-react'
-
 import ForumPost from './post'
 
 export default class ForumPosts extends React.Component {
   render() {
-    const { topics } = this.props
+    const {topics} = this.props
     return (
       // <Card.Group
       //   itemsPerRow={3}

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Container, Grid, Segment } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Container, Grid, Segment} from 'semantic-ui-react'
 // import { Link } from 'react-router-dom'
 
 export default class HeaderMenu extends Component {
@@ -31,14 +31,16 @@ export default class HeaderMenu extends Component {
             <Grid.Column width={16} textAlign='center'>
 
               <h4 className="ui inverted header">
-                <img src="/logo.png" className="ui image" />
+                <img alt="logo" src="/logo.png" className="ui image"/>
                 eostalk.io
               </h4>
-              <p>the <a href='https://eos.io/' target='_new'> EOS </a> Community, beta version, powered by <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
+              <p>the <a href='https://eos.io/' target='_new'> EOS </a> Community, beta version, powered by <a
+                href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
 
-              <p><a target="_blank" href="https://www.copyrighted.com/copyrights/view/dxj2-evba-bvov-rdqv"><img style={{border: "none"}} alt="Copyrighted.com Registered &amp; Protected
+              <p><a target="_blank" href="https://www.copyrighted.com/copyrights/view/dxj2-evba-bvov-rdqv"><img
+                style={{border: "none"}} alt="Copyrighted.com Registered &amp; Protected
 DXJ2-EVBA-BVOV-RDQV" title="Copyrighted.com Registered &amp; Protected
-DXJ2-EVBA-BVOV-RDQV" width="150" height="40" src="https://static.copyrighted.com/images/seal.gif" /></a></p>
+DXJ2-EVBA-BVOV-RDQV" width="150" height="40" src="https://static.copyrighted.com/images/seal.gif"/></a></p>
 
             </Grid.Column>
           </Grid>

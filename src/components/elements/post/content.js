@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import Noty from 'noty';
-
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Button, Divider, Header, Popup, Segment } from 'semantic-ui-react'
-
+import Noty from 'noty';
 import MarkdownViewer from '../../../utils/MarkdownViewer';
 import PostControls from './controls'
-
 import PostForm from '../../../containers/post/form'
 import PostFormHeader from './form/header'
-import UserAvatar from '../account/avatar'
-import AccountLink from '../account/link'
+// import UserAvatar from '../account/avatar'
+// import AccountLink from '../account/link'
 import PostTitle from './title'
 
 export default class PostContent extends React.Component {

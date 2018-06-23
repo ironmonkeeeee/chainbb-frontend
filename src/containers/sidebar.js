@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { Divider, Button, Header, Icon, Menu, Segment } from 'semantic-ui-react'
+import { Header, Icon, Menu, Segment } from 'semantic-ui-react'
 import * as accountActions from '../actions/accountActions'
 import { Link } from 'react-router-dom'
 import Iframe from 'react-iframe'
@@ -12,7 +12,6 @@ class Sidebar extends React.Component {
     const { account, forum, section } = this.props
     const { isUser } = account
     let userMenu = false
-    let requestForum = false
     let forumMenu = false
     if(section === 'thread' && forum && forum.target) {
       forumMenu = (
@@ -31,22 +30,22 @@ class Sidebar extends React.Component {
         </Link>
       )
     }
-    requestForum = (
-        <Segment basic textAlign='center'>
-            <Header size='tiny'>
-                Start your own community forum!
-            </Header>
-            <p>
-                <Button
-                    as={Link}
-                    to='/create/forum'
-                    content='Get Started'
-                    size='small'
-                    color='blue'
-                />
-            </p>
-        </Segment>
-    )
+    // let requestForum = (
+    //     <Segment basic textAlign='center'>
+    //         <Header size='tiny'>
+    //             Start your own community forum!
+    //         </Header>
+    //         <p>
+    //             <Button
+    //                 as={Link}
+    //                 to='/create/forum'
+    //                 content='Get Started'
+    //                 size='small'
+    //                 color='blue'
+    //             />
+    //         </p>
+    //     </Segment>
+    // )
     let subscribedForums = false
         // ,
         // categories = (

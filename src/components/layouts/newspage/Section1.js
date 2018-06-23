@@ -1,18 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
 import TimeAgo from 'react-timeago'
-
-import { Header } from 'semantic-ui-react'
-
+// import { Header } from 'semantic-ui-react'
 import * as GLOBAL from '../../../global';
 import AccountAvatar from '../../elements/account/avatar'
 import AccountLink from '../../elements/account/link';
 
 export class Item extends React.Component {
   render() {
-    let { item, showMeta, imageSize, titleSize } = this.props;
-    let { title, author, created, children } = item;
+    let {item, showMeta, imageSize, titleSize} = this.props;
+    let {title, author, created} = item;
 
     // if (itemStyle === "Style1") {
     //   return (
@@ -83,38 +80,43 @@ export class Item extends React.Component {
     //   )
     // }
 
-      let imageSrc = "https://semantic-ui.com/images/wireframe/image.png";
-      try {
-        imageSrc = item.json_metadata.image[0];
-      } catch(e) {
-      }
-      let htmlImage = <div className={"ui image " + imageSize} style={{overflow: 'hidden', maxHeight: '10em'}}><img src={imageSrc} /></div>;
-      let htmlTitle = <div className={titleSize}>{title}</div>;
+    let imageSrc = "https://semantic-ui.com/images/wireframe/image.png";
+    try {
+      imageSrc = item.json_metadata.image[0];
+    } catch (e) {
+    }
+    let htmlImage = (
+      <div className={"ui image " + imageSize} style={{overflow: 'hidden', maxHeight: '10em'}}>
+        <img alt="" src={imageSrc}/>
+      </div>
+    );
+    let htmlTitle = <div className={titleSize}>{title}</div>;
 
-      let meta = null;
-      if (showMeta) {
-        meta = (
-          <div className="meta">
-            <AccountAvatar username={author} style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}} />
-            <AccountLink username={author} />
-            <br/>
-            <TimeAgo date={`${created}Z`} />
-          </div>
-        );
-      }
-
-      return (
-        <div className="item">
-          {htmlImage}
-          <div className="content">
-            {htmlTitle}
-            {/*<div className="description">*/}
-              {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
-            {/*</div>*/}
-            {meta}
-          </div>
+    let meta = null;
+    if (showMeta) {
+      meta = (
+        <div className="meta">
+          <AccountAvatar username={author}
+                         style={{minHeight: '35px', minWidth: '35px', marginBottom: 0, marginRight: '1em'}}/>
+          <AccountLink username={author}/>
+          <br/>
+          <TimeAgo date={`${created}Z`}/>
         </div>
-      )
+      );
+    }
+
+    return (
+      <div className="item">
+        {htmlImage}
+        <div className="content">
+          {htmlTitle}
+          {/*<div className="description">*/}
+          {/*<p><img src="https://semantic-ui.com/images/wireframe/short-paragraph.png" className="ui wireframe image" /></p>*/}
+          {/*</div>*/}
+          {meta}
+        </div>
+      </div>
+    )
   }
 }
 
@@ -124,8 +126,6 @@ Item.propTypes = {
   imageSize: PropTypes.string.isRequired,
   titleSize: PropTypes.string.isRequired
 }
-
-
 
 
 export default class Section1 extends React.Component {
@@ -191,7 +191,7 @@ export default class Section1 extends React.Component {
       } else {
         console.error(response.status);
       }
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -202,7 +202,7 @@ export default class Section1 extends React.Component {
         <h4 className="ui dividing header">{this.props.title}</h4>
         <div className="ui items">
           {this.state.posts.map(item => {
-            return <Item {...this.props} key={item._id} item={item} />
+            return <Item {...this.props} key={item._id} item={item}/>
           })}
         </div>
         {/*<div className="ui centered banner test ad"></div>*/}
