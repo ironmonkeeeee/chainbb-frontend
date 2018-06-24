@@ -47,16 +47,16 @@ const App = () => (
         <meta itemprop="image"
               content="https://steemit-production-imageproxy-upload.s3.amazonaws.com/DQmckc76UaBZSicePvDG9dKwrgyS5GoZRxAnBZ8AzxtVwH8"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:site" content="@chain_bb"/>
-        <meta name="twitter:title" content="chainBB Forums"/>
+        <meta name="twitter:site" content="@eostalk"/>
+        <meta name="twitter:title" content="eostalk Forums"/>
         <meta name="twitter:description"
               content="Blockchain based decentralized forum software powered by the Steem blockchain."/>
-        <meta name="twitter:creator" content="@greymass"/>
+        <meta name="twitter:creator" content="@eostalk"/>
         <meta name="twitter:image:src"
               content="https://steemit-production-imageproxy-upload.s3.amazonaws.com/DQmckc76UaBZSicePvDG9dKwrgyS5GoZRxAnBZ8AzxtVwH8"/>
-        <meta property="og:title" content="chainBB Forums"/>
+        <meta property="og:title" content="eostalk Forums"/>
         <meta property="og:type" content="article"/>
-        <meta property="og:url" content="http://netify.chainbb.com/"/>
+        <meta property="og:url" content="http://eostalk.io/"/>
         <meta property="og:image"
               content="https://steemit-production-imageproxy-upload.s3.amazonaws.com/DQmckc76UaBZSicePvDG9dKwrgyS5GoZRxAnBZ8AzxtVwH8"/>
         <meta property="og:description"

@@ -62,7 +62,7 @@ export default class ForumOverview extends React.Component {
                             <Table.Row>
                                 <Table.Cell>Creator</Table.Cell>
                                 <Table.Cell>
-                                    <AccountLink username={(target.creator) ? target.creator : 'chainbb'} />
+                                    <AccountLink username={(target.creator) ? target.creator : 'eostalk'} />
                                     {(!target.creator)
                                         ? (
                                             <strong>{' '}(Legacy Forum)</strong>
